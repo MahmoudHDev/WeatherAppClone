@@ -20,6 +20,8 @@ class MainViewController: UIViewController {
     //MARK:- Properties
     var presenter       : MainViewPresenter?
     var locationManager = CLLocationManager()
+    var weatherModel    = [TodayWeatherModel]()
+    
     
     //MARK:- View life cycle
     override func viewDidLoad() {
@@ -35,7 +37,7 @@ class MainViewController: UIViewController {
 
 //MARK:- Presenter
 extension MainViewController: MainViewPr {
-    
+
     func dataDidLoad(data: TodayWeatherModel) {
         DispatchQueue.main.async{
             self.cityNameLbl.text = "\(data.name), \(data.sys.country)"
@@ -50,5 +52,9 @@ extension MainViewController: MainViewPr {
         }
     }
     
+    func dailyDataLoaded(data: TodayWeatherModel) {
+        print("Add to array \(weatherModel.count)")
+        weatherModel.append(data)
+    }
     
 }

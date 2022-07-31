@@ -18,10 +18,8 @@ extension MainViewController: CLLocationManagerDelegate {
         locationManager.requestAlwaysAuthorization()
         locationManager.startUpdatingLocation()
         locationManager.startMonitoringSignificantLocationChanges()
-
         
     }
-    
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         self.locationManager.stopUpdatingLocation()
@@ -29,7 +27,9 @@ extension MainViewController: CLLocationManagerDelegate {
         guard let coordinates = locations.last?.coordinate else {return}
         let longi = Int(coordinates.longitude)
         let latit = Int(coordinates.latitude)
+        
         presenter?.fetchData(longi: longi, latit: latit)
+        presenter?.fetchDaysData(longi: longi, latit: latit)
         
     }
 }

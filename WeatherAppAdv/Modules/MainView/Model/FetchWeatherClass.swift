@@ -9,6 +9,8 @@ import Foundation
 
 class FetchWeatherClass: FetchWeatherPr {
 
+    
+
     //MARK:- Properties
     var weatherManager = WeatherManager()
     
@@ -18,4 +20,7 @@ class FetchWeatherClass: FetchWeatherPr {
         weatherManager.getWeatherData(longi: longi, Latit: Latit)
     }
     
+    func getDailyData(longi: Int, Latit: Int) {
+        weatherManager.getDailyData(longi: longi, Latit: Latit)
+    }
 }

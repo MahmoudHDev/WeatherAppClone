@@ -10,6 +10,7 @@ import Foundation
 //MARK:- Protocol
 protocol MainViewPr {
     func dataDidLoad(data: TodayWeatherModel)
+    func dailyDataLoaded(data: TodayWeatherModel)
     func dataFaildLoad(error: String)
 }
 
@@ -24,7 +25,7 @@ class MainViewPresenter {
         self.view = view
         fetchWeather.weatherManager.delegate = self
     }
-
+    
     
     //MARK:- Methods
     // Load Weather Data
@@ -32,10 +33,16 @@ class MainViewPresenter {
         fetchWeather.getWeatherData(longi: longi, Latit: latit)
     }
     
+    func fetchDaysData(longi: Int, latit: Int){
+        fetchWeather.getDailyData(longi: longi, Latit: latit)
+    }
+    
 }
+
 //MARK:- Protocol
 
 extension MainViewPresenter: WeatherManagerPr {
+    
     func dataDidLoad(data: TodayWeatherModel) {
         self.view?.dataDidLoad(data: data)
     }
@@ -43,6 +50,8 @@ extension MainViewPresenter: WeatherManagerPr {
     func dataFaildData(error: String) {
         self.view?.dataFaildLoad(error: error)
     }
-    
+    func dailyDataDidLoad(data: TodayWeatherModel) {
+        self.view?.dailyDataLoaded(data: data)
+    }
     
 }

@@ -8,4 +8,5 @@
 import Foundation
 protocol FetchWeatherPr {
     func getWeatherData(longi: Int, Latit: Int)
+    func getDailyData(longi: Int, Latit: Int)
 }
